@@ -414,6 +414,12 @@ class MainOrganizer:
             True si se procesó correctamente
         """
         try:
+            # Skip if file no longer exists (e.g., broken symlink)
+            if not file_path.exists():
+                self.stats["errors"] += 1
+                self.errors.append(f"Archivo no encontrado: {file_path}")
+                return False
+
             # Get basic information
             category_base = self.get_category(file_path)
             category, is_screenshot = self.get_final_category(file_path)
@@ -900,10 +906,13 @@ class MainOrganizer:
                 for root, dirs, file_names in os.walk(source):
                     for file_name in file_names:
                         if not file_name.startswith('.'):
-                            files.append(Path(root) / file_name)
+                            file_path = Path(root) / file_name
+                            # Skip broken symlinks
+                            if file_path.exists() or file_path.is_symlink() and file_path.resolve().exists():
+                                files.append(file_path)
             else:
                 files = [f for f in source.iterdir()
-                           if f.is_file() and not f.name.startswith('.')]
+                           if f.is_file() and not f.name.startswith('.') and f.exists()]
 
         print(f"[GRAFICA] Archivos a procesar: {len(files)}\n")
 
