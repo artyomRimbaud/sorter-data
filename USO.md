@@ -1,14 +1,13 @@
-
 # Referencia técnica — sorter-data
 
 ## Comandos CLI
 
-### `sorter-data run`
+### `sorter run`
 
 Organiza archivos desde uno o varios orígenes hacia un destino.
 
 ```bash
-sorter-data run <modo> --start <ruta> --end <ruta> [--simulation]
+sorter run <modo> --start <ruta> --end <ruta> [--simulation]
 ```
 
 | Argumento | Descripción |
@@ -20,30 +19,30 @@ sorter-data run <modo> --start <ruta> --end <ruta> [--simulation]
 
 ```bash
 # Múltiples orígenes
-sorter-data run move --start ~/descargas,/tmp/fotos --end ~/almacenamiento
+sorter run move --start ~/descargas,/tmp/fotos --end ~/almacenamiento
 ```
 
 ---
 
-### `sorter-data preset`
+### `sorter preset`
 
 Guarda y reutiliza configuraciones frecuentes. Los presets se almacenan como JSON en `~/.config/sorter-data/presets/`.
 
 ```bash
 # Crear
-sorter-data preset --create <nombre> --run <modo> --start <ruta> --end <ruta>
+sorter preset --create <nombre> --run <modo> --start <ruta> --end <ruta>
 
 # Ejecutar
-sorter-data preset <nombre>
+sorter preset <nombre>
 
 # Ejecutar en simulación
-sorter-data preset <nombre> simulation
+sorter preset <nombre> simulation
 
 # Listar
-sorter-data preset list
+sorter preset list
 
 # Eliminar
-sorter-data preset <nombre> delete
+sorter preset <nombre> delete
 ```
 
 Los nombres de preset solo admiten letras, números, guiones y guiones bajos.
@@ -61,12 +60,12 @@ Los nombres de preset solo admiten letras, números, guiones y guiones bajos.
 
 ---
 
-### `sorter-data info`
+### `sorter info`
 
 Analiza un directorio y muestra información de archivos sin modificar nada. El reporte se guarda en el origen.
 
 ```bash
-sorter-data info --start <ruta>
+sorter info --start <ruta>
 ```
 
 ---
@@ -183,13 +182,13 @@ Log de errores con timestamp, ruta del archivo afectado y descripción del error
 
 ```bash
 # 1. Analizar el origen
-sorter-data info --start ~/origen
+sorter info --start ~/origen
 
 # 2. Simular la operación y revisar reportes
-sorter-data run move --start ~/origen --end ~/destino --simulation
+sorter run move --start ~/origen --end ~/destino --simulation
 
 # 3. Ejecutar
-sorter-data run move --start ~/origen --end ~/destino
+sorter run move --start ~/origen --end ~/destino
 
 # 4. Verificar resultados
 cat ~/destino/.sorter-data_reports/*/report.txt
@@ -234,4 +233,4 @@ Indica que el archivo no tiene metadatos de fecha legibles. Causas comunes: desc
 ```
 ERROR: Preset 'nombre' not found
 ```
-Listar presets existentes con `sorter-data preset list` y recrear si es necesario.
+Listar presets existentes con `sorter preset list` y recrear si es necesario.

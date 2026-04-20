@@ -1,3 +1,4 @@
+
 # sorter-data
 
 Organizador de archivos multimedia y documentos basado en metadatos, con detección inteligente de duplicados.
@@ -42,13 +43,13 @@ pip install -e .
 
 ```bash
 # Simular organización (recomendado antes de ejecutar)
-sorter-data run move --start ~/fotos --end ~/almacenamiento --simulation
+sorter run move --start ~/fotos --end ~/almacenamiento --simulation
 
 # Mover archivos
-sorter-data run move --start ~/fotos --end ~/almacenamiento
+sorter run move --start ~/fotos --end ~/almacenamiento
 
 # Copiar archivos (preserva el origen)
-sorter-data run copy --start ~/fotos --end ~/almacenamiento
+sorter run copy --start ~/fotos --end ~/almacenamiento
 ```
 
 ## Estructura de salida
